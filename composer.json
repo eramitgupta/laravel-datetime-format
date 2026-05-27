@@ -1,0 +1,66 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "erag/laravel-datetime-format",
+    "description": "Format Eloquent date and datetime values consistently across models, Blade, and APIs.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "datetime",
+        "date",
+        "format",
+        "carbon",
+        "cast"
+    ],
+    "authors": [
+        {
+            "name": "Er Amit Gupta",
+            "email": "info.eramitgupta@gmail.com",
+            "homepage": "https://github.com/eramitgupta"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/contracts": "^10.0|^11.0|^12.0|^13.0",
+        "illuminate/database": "^10.0|^11.0|^12.0|^13.0",
+        "illuminate/support": "^10.0|^11.0|^12.0|^13.0",
+        "nesbot/carbon": "^2.72|^3.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.13",
+        "orchestra/testbench": "^8.0|^9.0|^10.0|^11.0",
+        "pestphp/pest": "^2.0|^3.0|^4.0",
+        "pestphp/pest-plugin-laravel": "^2.0|^3.0|^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelDateTimeFormat\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "lint": "pint --parallel",
+        "test": "pest"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelDateTimeFormat\\DateTimeFormatServiceProvider"
+            ],
+            "aliases": {
+                "DateFormat": "LaravelDateTimeFormat\\Facades\\DateFormat"
+            }
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
