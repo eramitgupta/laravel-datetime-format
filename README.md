@@ -1,15 +1,16 @@
 # Laravel DateTime Format
 
-`erag/laravel-datetime-format` keeps date and time output consistent across your Laravel app, without repeating manual `->format(...)` calls everywhere.
-
+A powerful Laravel package for centralized and consistent date/time formatting across your application. Automatically format Eloquent model dates, API responses, Blade output, and Carbon instances without repeating manual ->format(...) calls everywhere.
 ## Key Features 🔥
 
-- 👤 Auto-formats model date fields when returning models (for example, `User::first()`).
-- 🧠 One centralized formatter for datetime, date-only, and time-only values.
-- 🧩 Per-column control using a custom cast (`FormattedDateTimeCast`).
-- 🎨 Blade directive support via `@dateTimeFormat(...)`.
-- ⏱️ Carbon macro support via `toConfiguredFormat()`.
-- 📦 API resource helper macro via `formatDateTime(...)`.
+
+* 👤 Automatic Eloquent model datetime formatting
+* 🧠 Centralized datetime formatter service
+* 🧩 Custom cast support with `FormattedDateTimeCast`
+* 🎨 Blade directive support via `@dateTimeFormat(...)`
+* ⏱️ Carbon macro support using `toConfiguredFormat()`
+* 📦 API resource helper macros
+* 🌍 Timezone and locale support
 
 ## Install 🚀
 
