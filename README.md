@@ -11,6 +11,8 @@ A powerful Laravel package for centralized and consistent date/time formatting a
 * ⏱️ Carbon macro support using `toConfiguredFormat()`
 * 📦 API resource helper macros
 * 🌍 Timezone and locale support
+* 🧱 Laravel `10`, `11`, `12`, and `13` support
+* ✅ PHP `8.2+` support
 
 ## Install 🚀
 
