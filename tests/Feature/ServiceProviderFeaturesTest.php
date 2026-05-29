@@ -98,3 +98,25 @@ it('registers datetime blade directive', function (): void {
 
     expect(trim($rendered))->toBe('2026-05-10 01:02');
 });
+
+it('registers date format blade directive', function (): void {
+    config()->set('datetime-format.date_format', 'd/m/Y');
+    config()->set('datetime-format.timezone', 'UTC');
+
+    $rendered = Blade::render('@dateFormat($value)', [
+        'value' => Carbon::parse('2026-05-10 01:02:03', 'UTC'),
+    ]);
+
+    expect(trim($rendered))->toBe('10/05/2026');
+});
+
+it('registers time format blade directive', function (): void {
+    config()->set('datetime-format.time_format', 'h:i A');
+    config()->set('datetime-format.timezone', 'UTC');
+
+    $rendered = Blade::render('@timeFormat($value)', [
+        'value' => Carbon::parse('2026-05-10 01:02:03', 'UTC'),
+    ]);
+
+    expect(trim($rendered))->toBe('01:02 AM');
+});

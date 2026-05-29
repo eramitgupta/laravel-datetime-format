@@ -51,6 +51,14 @@ class DateTimeFormatServiceProvider extends ServiceProvider
             return "<?php echo app('datetime-formatter')->format({$expression}); ?>";
         });
 
+        Blade::directive('dateFormat', function (string $expression): string {
+            return "<?php echo app('datetime-formatter')->formatDate({$expression}); ?>";
+        });
+
+        Blade::directive('timeFormat', function (string $expression): string {
+            return "<?php echo app('datetime-formatter')->formatTime({$expression}); ?>";
+        });
+
         JsonResource::macro('formatDateTime', function (mixed $value, ?string $format = null): mixed {
             return app(DateTimeFormatter::class)->format($value, $format);
         });

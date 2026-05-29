@@ -7,7 +7,7 @@ A powerful Laravel package for centralized and consistent date/time formatting a
 * 👤 Automatic Eloquent model datetime formatting
 * 🧠 Centralized datetime formatter service
 * 🧩 Custom cast support with `FormattedDateTimeCast`
-* 🎨 Blade directive support via `@dateTimeFormat(...)`
+* 🎨 Blade directive support via `@dateTimeFormat(...)`, `@datetime(...)`, `@dateFormat(...)`, and `@timeFormat(...)`
 * ⏱️ Carbon macro support using `toConfiguredFormat()`
 * 📦 API resource helper macros
 * 🌍 Timezone and locale support
@@ -122,12 +122,18 @@ Example output:
 
 ```blade
 @dateTimeFormat($user->created_at)
+@datetime($user->created_at)
+@dateFormat($user->created_at)
+@timeFormat($user->created_at)
 ```
 
 Rendered output:
 
 ```text
 27-05-2026 21:09:13
+27-05-2026 21:09:13
+27-05-2026
+21:09:13
 ```
 
 ### 4) Formatter Service 🧠
