@@ -88,6 +88,60 @@ it('formats model dates in serialized array output', function (): void {
     expect($model->toArray()['created_at'])->toBe('2026-05-01 10:11:12');
 });
 
+it('supports per-attribute formats through formattedDateAttributes', function (): void {
+    config()->set('datetime-format.format', 'Y-m-d H:i:s');
+    config()->set('datetime-format.timezone', 'UTC');
+
+    $model = new class extends Model
+    {
+        use HasFormattedDateTimes;
+
+        protected $guarded = [];
+
+        protected function formattedDateAttributes(): array
+        {
+            return [
+                'created_at' => 'd-m-Y',
+                'updated_at' => 'd/m/Y h:i A',
+                'email_verified_at' => 'M d, Y',
+            ];
+        }
+    };
+
+    $model->setRawAttributes([
+        'created_at' => '2026-05-01 10:11:12',
+        'updated_at' => '2026-05-02 15:16:17',
+        'email_verified_at' => '2026-05-03 20:21:22',
+    ]);
+
+    expect($model->created_at)->toBe('01-05-2026')
+        ->and($model->updated_at)->toBe('02/05/2026 03:16 PM')
+        ->and($model->email_verified_at)->toBe('May 03, 2026');
+});
+
+it('does not include time when a custom formattedDate uses a date-only format', function (): void {
+    config()->set('datetime-format.format', 'Y-m-d H:i:s');
+    config()->set('datetime-format.timezone', 'UTC');
+
+    $model = new class extends Model
+    {
+        use HasFormattedDateTimes;
+
+        protected $guarded = [];
+
+        protected array $formattedDate = [
+            'updated_at' => ['format' => 'M d, Y'],
+        ];
+    };
+
+    $model->setRawAttributes([
+        'updated_at' => '2026-05-01 10:11:12',
+    ]);
+
+    expect($model->updated_at)->toBe('May 01, 2026')
+        ->and($model->toArray()['updated_at'])->toBe('May 01, 2026');
+});
+
 it('registers datetime blade directive', function (): void {
     config()->set('datetime-format.format', 'Y-m-d H:i');
     config()->set('datetime-format.timezone', 'UTC');
